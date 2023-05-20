@@ -24,7 +24,8 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "bunker:build"
+        "buildTarget": "bunker:build",
+        "proxyConfig": "apps/bunker/proxy.conf.json"
       },
       "configurations": {
         "development": {
