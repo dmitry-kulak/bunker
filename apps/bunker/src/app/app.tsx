@@ -1,14 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-
-import NxWelcome from './nx-welcome';
+import { useEffect, useState } from 'react';
 
 export function App() {
-  return (
-    <div>
-      <NxWelcome title="bunker" />
-    </div>
-  );
+  const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    fetch('/api/')
+      .then((res) => res.json())
+      .then((res: { message: string }) => setResponse(res.message));
+  }, []);
+
+  return <div>{response}</div>;
 }
 
 export default App;
