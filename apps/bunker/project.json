@@ -73,6 +73,43 @@
       "options": {
         "buildTarget": "bunker:build"
       }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/bunker/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/bunker",
+        "configDir": "apps/bunker/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "bunker:build-storybook",
+        "staticFilePath": "dist/storybook/bunker"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "bunker:build-storybook:ci"
+        }
+      }
     }
   },
   "tags": []

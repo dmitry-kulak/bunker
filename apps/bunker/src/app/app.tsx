@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function App() {
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState("");
 
   useEffect(() => {
-    fetch('/api/')
+    fetch("/api/")
       .then((res) => res.json())
       .then((res: { message: string }) => setResponse(res.message));
   }, []);
