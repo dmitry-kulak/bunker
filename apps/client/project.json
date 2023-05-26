@@ -1,7 +1,7 @@
 {
-  "name": "bunker",
+  "name": "client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/bunker/src",
+  "sourceRoot": "apps/client/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/bunker"
+        "outputPath": "dist/apps/client"
       },
       "configurations": {
         "development": {
@@ -24,16 +24,16 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "bunker:build",
-        "proxyConfig": "apps/bunker/proxy.conf.json"
+        "buildTarget": "client:build",
+        "proxyConfig": "apps/client/proxy.conf.json"
       },
       "configurations": {
         "development": {
-          "buildTarget": "bunker:build:development",
+          "buildTarget": "client:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "bunker:build:production",
+          "buildTarget": "client:build:production",
           "hmr": false
         }
       }
@@ -42,43 +42,43 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "bunker:build"
+        "buildTarget": "client:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "bunker:build:development"
+          "buildTarget": "client:build:development"
         },
         "production": {
-          "buildTarget": "bunker:build:production"
+          "buildTarget": "client:build:production"
         }
       }
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/bunker"],
+      "outputs": ["coverage/apps/client"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/bunker"
+        "reportsDirectory": "../../coverage/apps/client"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/bunker/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/client/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "bunker:build"
+        "buildTarget": "client:build"
       }
     },
     "storybook": {
       "executor": "@nx/storybook:storybook",
       "options": {
         "port": 4400,
-        "configDir": "apps/bunker/.storybook"
+        "configDir": "apps/client/.storybook"
       },
       "configurations": {
         "ci": {
@@ -91,7 +91,7 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/bunker",
-        "configDir": "apps/bunker/.storybook"
+        "configDir": "apps/client/.storybook"
       },
       "configurations": {
         "ci": {
@@ -102,12 +102,12 @@
     "static-storybook": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "bunker:build-storybook",
+        "buildTarget": "client:build-storybook",
         "staticFilePath": "dist/storybook/bunker"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "bunker:build-storybook:ci"
+          "buildTarget": "client:build-storybook:ci"
         }
       }
     }

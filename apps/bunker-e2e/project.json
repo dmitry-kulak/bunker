@@ -8,15 +8,15 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/bunker-e2e/cypress.config.ts",
-        "devServerTarget": "bunker:serve:development",
+        "devServerTarget": "client:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "bunker:serve:production"
+          "devServerTarget": "client:serve:production"
         },
         "ci": {
-          "devServerTarget": "bunker:serve-static"
+          "devServerTarget": "client:serve-static"
         }
       }
     },
@@ -29,5 +29,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["bunker"]
+  "implicitDependencies": ["client"]
 }

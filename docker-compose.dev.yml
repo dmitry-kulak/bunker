@@ -17,7 +17,7 @@ services:
       - ./apps/api/:/app/apps/api/
     command: npx nx run api:serve
 
-  bunker:
+  client:
     build:
       context: .
       dockerfile: Dockerfile
@@ -27,8 +27,8 @@ services:
       - HOST=0.0.0.0
       - PORT=3000
     volumes:
-      - ./apps/bunker/:/app/apps/bunker/
-    command: npx nx run bunker:serve
+      - ./apps/client/:/app/apps/client/
+    command: npx nx run client:serve
 
   database:
     image: postgres:14
