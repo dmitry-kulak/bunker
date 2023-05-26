@@ -1,9 +1,5 @@
 version: '3'
 
-networks:
-  backend:
-    external: true
-
 volumes:
   postgres_data:
 
@@ -18,11 +14,9 @@ services:
       - HOST=0.0.0.0
       - PORT=3000
     volumes:
-      - ./node_modules:/app/node_modules
-      #- ./apps/api/:/app/apps/api/
+      - ./apps/api/:/app/apps/api/
     command: npx nx run api:serve
-    networks:
-      - backend
+
   bunker:
     build:
       context: .
@@ -33,11 +27,9 @@ services:
       - HOST=0.0.0.0
       - PORT=3000
     volumes:
-      - ./node_modules:/app/node_modules
-      #- ./apps/bunker/:/app/apps/bunker/
+      - ./apps/bunker/:/app/apps/bunker/
     command: npx nx run bunker:serve
-    networks:
-      - backend
+
   database:
     image: postgres:14
     environment:
@@ -48,6 +40,4 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - backend
 

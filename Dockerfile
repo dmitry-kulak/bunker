@@ -1,4 +1,7 @@
-FROM node:16-bullseye-slim
+FROM node:16
+
 WORKDIR /app
+
 COPY . .
-#ENTRYPOINT [ "/app/entrypoint.sh"]
+
+RUN npm install

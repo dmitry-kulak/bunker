@@ -3,6 +3,7 @@ import { app } from "./app/app";
 
 const host = process.env.HOST ?? "localhost";
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+console.log({ host, port });
 
 // Instantiate Fastify with some config
 const server = Fastify({
