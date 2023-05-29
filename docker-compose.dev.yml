@@ -9,10 +9,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "4000:4000"
     environment:
       - HOST=0.0.0.0
-      - PORT=3000
+      - PORT=4000
+      - DATABASE_APP_URL=postgresql://postgres:postgres@database:5432/db?connect_timeout=300
     volumes:
       - ./apps/api/:/app/apps/api/
     command: npx nx run api:serve
@@ -22,7 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "3000:3000"
     environment:
       - HOST=0.0.0.0
       - PORT=3000
@@ -31,11 +32,12 @@ services:
     command: npx nx run client:serve
 
   database:
-    image: postgres:14
+    image: postgres:15
     environment:
-      POSTGRES_DB: "db"
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "password"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+      - DATABASE_URL=postgresql://postgres:postgres@database:5432/db
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
